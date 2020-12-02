@@ -1,3 +1,5 @@
+from gde.models import *
+
 class Cart:
     def __init__(self, request):
         self.request = request
@@ -80,8 +82,6 @@ class Cart:
                     break
                 self.save()
                 break
-            else:
-                raise Exception("product doesn't exist")
 
     def decrease_dlc(self, dlc):
         for key, value in self.cart.items():
@@ -92,8 +92,6 @@ class Cart:
                     break
                 self.save()
                 break
-            else:
-                raise Exception("product doesn't exist")
 
     def decrease_package(self, package):
         for key, value in self.cart.items():
@@ -104,9 +102,6 @@ class Cart:
                     break
                 self.save()
                 break
-            else:
-                raise Exception("product doesn't exist")
-
     def clear(self):
         self.session["cart"] = {}
         self.session.modified = True

@@ -19,4 +19,6 @@ urlpatterns = [
     path('clear_videogame/', clear_cart_videogame , name='clear_cart_videogame'),
     path('clear_dlc/', clear_cart_dlc , name='clear_cart_dlc'),
     path('clear_package/', clear_cart_package , name='clear_cart_package'),
+
+    path('decrease_product/<str:product_name>/', decrease_cart, name= 'decrease_product'),
 ]

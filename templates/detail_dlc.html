@@ -10,26 +10,29 @@
   </head>
   <header>
     <div class="contenedor">
-      <a class="icon-gamepad" href="http://localhost:8000/store">  Game Designer Enterprise</a>
+      <a class="icon-gamepad" href="{% url '' %}">  Game Designer Enterprise</a>
       <input type="checkbox" id="menu-bar">
       <label for="menu-bar" class="icon-menu"></label>
       <nav class="menu">
-        <a class="icon-basket" href="store/"> Store</a>
-        <a href="#">About Us</a>
+        <a href="#">About us</a>
         {% if user.is_authenticated %}
           <a href="{% url 'logout' %}">Logout</a>
-          <a href="#" >usuario : {{user.username}}</a>
           {% if request.user|has_group:"Store" %}
-            <a><img src="{{ user.store.photo.url }}"></a>
+            <a class="icon-basket" href="store/"> Store</a>
+            <a href="{% url 'edit_store' %}" > {{user.username}}</a>
+            <a href="{% url 'edit_store' %}" ><img src="{{ user.store.photo.url }}"></a>
           {% elif request.user|has_group:"Dispatcher"%}
-            <a><img src="{{ user.dispatcher.photo.url }}"></a> 
+            <a href="{% url 'edit_dispatcher' %}" > {{user.username}}</a>
+            <a href="{% url 'edit_dispatcher' %}" ><img src="{{ user.dispatcher.photo.url }}"></a>
+          {% elif request.user|has_group:"Admin"%}
+            <a href="{% url 'edit_admin' %}" > {{user.username}}</a>
           {% endif %}
         {% else %}
           <a class="label" href="{% url 'login' %}">Login</a>
         {% endif %}
       </nav>
     </div>
-    <div>
+  </header>
 
   <h1>{{ Dlc.dlc_name}}</h1>
       <p>

@@ -10,33 +10,73 @@
   </head>
   <header>
     <div class="contenedor">
-      <a class="icon-gamepad" href="http://localhost:8000/store">  Game Designer Enterprise</a>
+      <a class="icon-gamepad" href="{% url '' %}">  Game Designer Enterprise</a>
       <input type="checkbox" id="menu-bar">
       <label for="menu-bar" class="icon-menu"></label>
       <nav class="menu">
-        <a class="icon-basket" href="store/"> Store</a>
-        <a href="#">About Us</a>
+        {% if request.user|has_group:"Store" %}
+          <a class="icon-basket" href="{% url 'store' %}"> Store</a>
+        {% endif %}
+        <a href="#">About us</a>
         {% if user.is_authenticated %}
           <a href="{% url 'logout' %}">Logout</a>
-          <a href="#" >usuario : {{user.username}}</a>
           {% if request.user|has_group:"Store" %}
-            <a><img src="{{ user.store.photo.url }}"></a>
+            <a href="{% url 'edit_store' %}" >usuario : {{user.username}}</a>
+            <a href="{% url 'edit_store' %}" ><img src="{{ user.store.photo.url }}"></a>
           {% elif request.user|has_group:"Dispatcher"%}
-            <a><img src="{{ user.dispatcher.photo.url }}"></a> 
+            <a href="{% url 'edit_dispatcher' %}" >usuario : {{user.username}}</a>
+            <a href="{% url 'edit_dispatcher' %}" ><img src="{{ user.dispatcher.photo.url }}"></a>
+          {% elif request.user|has_group:"Admin"%}
+            <a href="{% url 'edit_admin' %}" >usuario : {{user.username}}</a>
           {% endif %}
         {% else %}
           <a class="label" href="{% url 'login' %}">Login</a>
         {% endif %}
       </nav>
     </div>
-    <div>
+  </header>
+  <body>
+    <div class="content">
       {% if request.user|has_group:"Admin" %}
-          <h1>User belongs to my group</h1>
+        <h2>Welcome {{ user.username }}</h2>
+        <div class="labels">
+          <a href="{% url 'videogames'%}">Videogames</a>
+          <a href="{% url 'packages'%}">Packages</a>
+          <a href="{% url 'dlcs'%}">Dlcs</a>
+          <a href="register_admin">New_admin</a>
+          <a href="register_dispatcher">New_dispatcher</a>
+        </div>
+      {% elif request.user|has_group:"Dispatcher"%}
+        <h2>Welcome {{ user.username }}</h2>
+        <div class="labels"><a href="{%url 'list_orders' %}">My orders</a></div>
+      {% elif request.user|has_group:"Store" %}
+        <h2>Welcome {{ user.username }}</h2>
+        <div class="labels"><a class="icon-basket" href="{%url 'store' %}">Shop Now</a></div>
       {% else %}
-          <h1>User does not belong to my group</h1>
+        <h2>Welcome to GDE store</h2>
+        <h2> The latest in </h2>
+        <h2>Videogames. special Packages and DLC's </h2>
+        <h2>To continue please:</h2>
+        <div class="labels"><a href="{%url 'login'%}">Login</a></div>
       {% endif %}
     </div>
-</div>
-  </header>
-
+    <div class="slider">
+      <ul>
+        <li><img src="{% static 'img/1.jpg' %}" alt="img/1.jpg"></li>
+        <li><img src="{% static 'img/2.jpg' %}" alt="img/2.jpg"></li>
+        <li><img src="{% static 'img/3.jpg' %}" alt="img/3.jpg"></li>
+        <li><img src="{% static 'img/4.jpg' %}" alt="img/4.jpg"></li>
+      </ul>
+    </div>
+  </body>
+  <footer>
+    <div class="contenedor">
+      <p class="designer"> Designed By Santiago Diaz & Santiago Alvarez & Nicolas Velandia</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/Santiagodj1/" class="icon-facebook-squared" style= 'color: #1F68CA'></a>
+        <a href= "http://www.instagram.com/santiago_jinete/" class="icon-instagram" style= 'color:linear-gradient(top, red, gold);'></a>
+        <a href="#" class="icon-twitter" style= 'color:lightblue'></a>
+      </div>
+    </div>
+  </footer>
 </html>

@@ -15,6 +15,9 @@ class RandomManager(models.Manager):
 class GamesManager(models.Manager):
 	def get_queryset(self):
 		return super(GamesManager,self).get_queryset()
+class DlcManager(models.Manager):
+	def get_queryset(self):
+		return super(DlcManager,self).get_queryset()
 class Category(models.Model):
 	category_name= models.CharField(max_length= 20, blank= False, unique= True)
 	def __str__(self):
@@ -87,7 +90,8 @@ class Dlc(models.Model):
 		return reverse('dlc_detail', kwargs={'pk':self.dlc_name})
 	def __str__(self):
 		return self.dlc_name
-
+	objects = models.Manager()
+	show = DlcManager()
 class Package(models.Model):
 	package_name= models.CharField(primary_key= True, max_length= 50)
 	unit_price= models.DecimalField(decimal_places= 2, max_digits= 18, blank= False)

@@ -61,6 +61,33 @@ def decrease_videogame(request, videogame_name):
     videogame = Videogame.objects.get(videogame_name=videogame_name)
     cart.decrease_videogame(videogame=videogame)
     return redirect("list_videogame")
+#@allowed_users(allowed_roles=['Store'])
+@login_required
+def decrease_cart(request, product_name):
+    cart= Cart(request)
+    juegos=[]
+    paquetes=[]
+    dlc_l=[]
+    for i in Videogame.objects.all():
+        juegos.append(i.videogame_name)
+    for p in Package.objects.all():
+        paquetes.append(p.package_name)
+    for z in Dlc.objects.all():
+        dlc_l.append(z.dlc_name)
+    if product_name in juegos:
+        videogame = Videogame.objects.get(videogame_name=product_name)
+        cart.decrease_videogame(videogame=videogame)
+        return redirect("list_videogame")
+    elif product_name in paquetes:
+        package = Package.objects.get(package_name=product_name)
+        cart.decrease_package(package=package)
+        return redirect("list_package")
+    elif product_name in dlc_l:
+        dlc = Dlc.objects.get(dlc_name=product_name)
+        cart.decrease_dlc(dlc=dlc)
+        return redirect("list_dlc_dic")
+    else: raise 'Algo paso mal'    
+    
 
 @login_required
 @allowed_users(allowed_roles= ['Store'])

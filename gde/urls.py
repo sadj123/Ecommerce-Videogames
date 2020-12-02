@@ -35,7 +35,7 @@ urlpatterns = [
 	path('package/new/', PackageCreate_view.as_view(), name= "package_create"),
 	path('dlc/new/', DlcCreate_view.as_view(), name= "dlc_create"),
 
-	path('',views.main_menu, name="main_menu"),
+	path('',views.main_menu, name=""),
 	path('store/', views.store, name='store'),
 	path('store/videogame/', list_videogame , name= "list_videogame"),
 	path('store/dlc/', list_dlc_dic , name= "list_dlc_dic"),

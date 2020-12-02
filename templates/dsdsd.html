@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{% static 'main_menu/css/fontello.css' %}">
     <link rel="stylesheet" href="{% static 'style2.css' %}">
     <meta charset="utf-8">
-    <title>Orders</title>
+    <title>Main_menu</title>
   </head>
   <header>
     <div class="contenedor">
@@ -34,18 +34,13 @@
     </div>
   </header>
     <div>
-    
-  <p>ORDERS</p>
-
+      {% if request.user|has_group:"Admin" %}
+          <h1>User belongs to my group</h1>
+      {% else %}
+          <h1>User does not belong to my group</h1>
+      {% endif %}
     </div>
-  <div>
-  {% for pod in OD %}
-    {% if pod.dispatcher.user == user %}
+</div>
+  </header>
 
-        <h2>
-        <!--<a href="{{ post.get_absolute_url }}">-->
-        <a href="{% url 'detail_order' pod.id %}"> {{pod.id}}</a>
-        </h2>
-    {%endif%}
-  {% endfor %}
-  </div>
+</html>

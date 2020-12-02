@@ -36,7 +36,7 @@ body:before{
   top: 0;
   left: 0;
   position: relative;
-  margin-bottom: 50px;
+  
   filter: none;
   background: rgba(38,42,58,0.6);
   background-size: cover;
@@ -75,7 +75,10 @@ body:before{
   color: #585A61;
   display: block;
   transform: translateY(50%);
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 7px 3px;
   text-align: center;
   border: 3px solid #585A61;
@@ -120,6 +123,7 @@ body:before{
   justify-content: center;
   align-items: center;
   border: 3px solid #566369;
+  margin: 10px;
 }
 
 .form-box-select label:hover{
@@ -132,6 +136,7 @@ body:before{
 }
 
 .form-box h1{
+  margin-top: 25px;
   font-weight: 500;
   font-size: 700%;
   color: #fff;
