@@ -62,7 +62,7 @@ class Cart:
         self.save()
 
     def remove_dlc(self, dlc):
-        if dlc.dlce_name in self.cart:
+        if dlc.dlc_name in self.cart:
             del self.cart[dlc.dlc_name]
         self.save()
 

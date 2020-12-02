@@ -53,7 +53,7 @@ urlpatterns = [
 	
 	path('edit_admin/', views.edit_admin, name= 'edit_admin'),	
 	path('edit_store/', views.edit_store, name= 'edit_store'),
-	path('edit_dispatcher/', views.edit_dispatcher, name= 'edit_store'),
+	path('edit_dispatcher/', views.edit_dispatcher, name= 'edit_dispatcher'),
 
 	path('delivery/list_orders/', DeliveryList_view.as_view(), name= 'list_orders'),
 	path('delivery/list_orders/<str:pk>/', DeliveryDetail_view.as_view(), name="detail_order"),
