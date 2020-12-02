@@ -1,0 +1,36 @@
+{% extends 'tienda.html' %}
+
+{% load cart_tags %}
+
+{% block title %} Videogames {% endblock %}
+
+{% block content %}
+  <div class="row">
+
+    <div class="col-9">
+      <div class="row">
+        {% for package in packages %}
+          <div class="col-md-3 col-sm-12 col-lg-4" style="margin-top=10px;">
+            <div class="card" style="width:100%;">
+              <img src="{{ package.photo.url }}" alt="{{ package.package_name }}" class="card-img-top" />
+              <h5 class="card-title"> {{package.package_name }} </h5>
+              <p class="card-title">Contains: </p>
+              {% for videogame in package.videogames.all %}
+                <p class="card-title">  - {{ videogame }}</p>
+              {% endfor %}
+              <p class="card-text">{{ package.unit_price|money_format:"$" }}</p>
+            </div>
+            <div class="card-footer text-center">
+              <a href="{% url 'cart:add_package' package.package_name %}" class="btn btn-success">Add to cart</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-3">
+      {% include "widget_cart_package.html" %}
+    </div>
+
+  </div>
+{% endblock %}

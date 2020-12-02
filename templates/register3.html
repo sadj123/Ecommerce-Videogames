@@ -1,0 +1,17 @@
+{% load static %}
+<!Doctype html>
+<html class="no-js" lang="en">
+<head>
+  <title>register_admin</title>
+</head>
+<body>
+  <div>
+    <h1>Create Admin</h1>
+    <form method= 'post'>
+      {{user_form.as_p}}
+      {% csrf_token %}
+      <p><input type="submit" value="Crete an account"></p>
+    </form>
+  </div>
+  </body>
+  </html>

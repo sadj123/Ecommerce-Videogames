@@ -1,0 +1,57 @@
+{% load cart_tags %}
+<style>
+  *{
+    color: white;
+  }
+</style>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th colspan="3" class="text-center">
+        Shopping cart
+      </th>
+    </tr>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if request.session.cart.items %}
+      {% for key, value in request.session.cart.items %}
+        <tr class="text-center">
+          <td>{{ key }}</td>
+          <td>{{ value.quantity }}</td>
+          <td>
+            <a href="{% url 'cart:decrease_videogame' key %}" class="ml-2 btn-sm btn btn-danger">-</a>
+            <a href="{% url 'cart:add_videogame' key %}" class="btn btn-sm btn-success">+</a>
+                Total {{ value.price|multiply:value.quantity|money_format:"$" }}    .
+          </td>
+        </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td colspan="3">
+          <div class="alert alert-danger text-center">
+            You don't Have products in the shopping cart
+          </div>
+        </td>
+      </tr>
+    {%  endif %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="3">
+        Total: {{ cart_total_amount|money_format:"$" }}
+      </td>
+    </tr>
+    {% if request.session.cart.items %}
+      <tr>
+        <td colspan="3">
+          <a href="{% url 'process_order' %}" class="btn btn-success">Checkout</a>
+        </td>
+      </tr>
+    {% endif %}
+  </tfoot>
+</table>

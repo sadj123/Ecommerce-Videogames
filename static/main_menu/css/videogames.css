@@ -1,0 +1,27 @@
+#videogames h3{
+  font-size: 30px;
+  padding: 15px;
+}
+
+#videogames{
+  background: #333;
+  color: #fff;
+  text-align: center;
+}
+
+#videogames .contenedor{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.info-videogames{
+  margin: 20px;
+}
+
+.info-videogames img{
+  width: 250px;
+  height: 250px;
+  border-radius: 60%;
+  border: 7px solid #fff;
+}

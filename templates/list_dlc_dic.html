@@ -1,0 +1,33 @@
+{% extends 'tienda.html' %}
+
+{% load cart_tags %}
+
+{% block title %} Videogames {% endblock %}
+
+{% block content %}
+  <div class="row">
+
+    <div class="col-9">
+      <div class="row">
+        {% for dlc in dlcs %}
+          <div class="col-md-3 col-sm-12 col-lg-4" style="margin-top=10px;">
+            <div class="card" style="width:100%;">
+              <img src="{{ dlc.photo.url }}" alt="{{ dlc.dlc_name }}" class="card-img-top" />
+              <h5 class="card-title"> {{dlc.dlc_name }} </h5>
+              <p class="card-text"> Designed for: {{ dlc.videogame }}</p>
+              <p class="card-text">{{ dlc.unit_price|money_format:"$" }}</p>
+            </div>
+            <div class="card-footer text-center">
+              <a href="{% url 'cart:add_dlc' dlc.dlc_name %}" class="btn btn-success">Add to cart</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-3">
+      {% include "widget_cart_dlc.html" %}
+    </div>
+
+  </div>
+{% endblock %}

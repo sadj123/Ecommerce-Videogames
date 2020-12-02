@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load auth_extras %}
+    <link rel="stylesheet" href="{% static 'main_menu/css/fontello.css' %}">
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+    <meta charset="utf-8">
+    <title>Videogames {{VG.videogame_name}}</title>
+  </head>
+  <header>
+    <div class="contenedor">
+      <a class="icon-gamepad" href="http://localhost:8000/store">  Game Designer Enterprise</a>
+      <input type="checkbox" id="menu-bar">
+      <label for="menu-bar" class="icon-menu"></label>
+      <nav class="menu">
+        <a class="icon-basket" href="store/"> Store</a>
+        <a href="#">About Us</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}">Logout</a>
+          <a href="#" >usuario : {{user.username}}</a>
+          {% if request.user|has_group:"Store" %}
+            <a><img src="{{ user.store.photo.url }}"></a>
+          {% elif request.user|has_group:"Dispatcher"%}
+            <a><img src="{{ user.dispatcher.photo.url }}"></a> 
+          {% endif %}
+        {% else %}
+          <a class="label" href="{% url 'login' %}">Login</a>
+        {% endif %}
+      </nav>
+    </div>
+    <div>
+    
+  <h1>{{ VG.videogame_name}}</h1>
+  <p>
+      Rating: {{VG.rating}}
+      <br>
+      Release date: {{VG.release_date}}
+      <br>
+      Engine: {{VG.engine}}
+      <br>
+      Production cost: {{VG.production_cost}}
+      <br>
+      Administrator: {{VG.administrator}}
+      <br>
+      Category: {{VG.category}}
+      <br>
+      Price: {{VG.unit_price}}
+      <br>
+      Genre:
+      {%for genres in VG.genre.all%} {{genres}}<br>{% endfor %}
+      <br>
+      {%for format in VG.formats.all%} {{format}}<br>{% endfor %}
+      <br>
+      {%for platforms in VG.platform.all%} {{platforms}}<br>{% endfor %}
+      <br>
+      {%for languages in VG.language.all%} {{languages}}<br>{% endfor %}
+      <br>
+  </p>
+</div>
+<div class="IDK">
+  {% if VG.administrator == user %}
+  <div class="IDLLLL">
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'videogame_update' VG.videogame_name %}"> Update Post</a>
+    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'videogame_delete' VG.videogame_name %}"> Delete Post</a>
+  </div>
+  {%endif%}
+</div>
+<div>
+
+  <a href="{%url 'videogames' %}">PARA ATRAS</a>
+</div>
+</html>

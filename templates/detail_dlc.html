@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load auth_extras %}
+    <link rel="stylesheet" href="{% static 'main_menu/css/fontello.css' %}">
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+    <meta charset="utf-8">
+    <title>DLC {{DLC.Dlc_name}}</title>
+  </head>
+  <header>
+    <div class="contenedor">
+      <a class="icon-gamepad" href="http://localhost:8000/store">  Game Designer Enterprise</a>
+      <input type="checkbox" id="menu-bar">
+      <label for="menu-bar" class="icon-menu"></label>
+      <nav class="menu">
+        <a class="icon-basket" href="store/"> Store</a>
+        <a href="#">About Us</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}">Logout</a>
+          <a href="#" >usuario : {{user.username}}</a>
+          {% if request.user|has_group:"Store" %}
+            <a><img src="{{ user.store.photo.url }}"></a>
+          {% elif request.user|has_group:"Dispatcher"%}
+            <a><img src="{{ user.dispatcher.photo.url }}"></a> 
+          {% endif %}
+        {% else %}
+          <a class="label" href="{% url 'login' %}">Login</a>
+        {% endif %}
+      </nav>
+    </div>
+    <div>
+
+  <h1>{{ Dlc.dlc_name}}</h1>
+      <p>
+      Price: {{DLC.unit_price}}
+      <br>
+      Administrator: {{DLC.administrator}}
+      <br>
+      Category: {{DLC.category}}
+      <br>
+      Videogame: {{DLC.videogame}}
+      <br>
+      Release Date: {{DLC.Release_date}}
+      <br>
+  </p>
+</div>
+<div class="IDK">
+  {% if DLC.administrator == user %}
+  <div class="IDLLLL">
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'dlc_update' DLC.dlc_name %}"> Update DLC</a>
+    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'dlc_delete' DLC.dlc_name %}"> Delete DLC</a>
+  </div>
+  {%endif%}
+</div>
+</html>

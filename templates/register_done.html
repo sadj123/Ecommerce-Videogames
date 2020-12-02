@@ -1,0 +1,17 @@
+{% load static %}
+<!Doctype html>
+<html class="no-js" lang="en">
+<head>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <title>register done</title>
+</head>
+<body>
+  <div class="form-box">
+    <h1>Welcome {{new_user.first_name}}!!</h1>
+    <p>Account created</p>
+    <p>Now you can:</p>
+    <a href="{%url 'login'%}"><input type="submit" value="Login" ></a>
+    <a href="{%url 'store'%}"><input type="button" value="Store" ></a>
+  </div>
+  </body>
+  </html>

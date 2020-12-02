@@ -1,0 +1,20 @@
+{% load static %}
+
+<!Doctype html>
+<html class="no-js" lang="en">
+<head>
+  <title>register</title>
+</head>
+<body>
+  <div>
+    <h1>Create</h1>
+    <form method= 'POST' enctype="multipart/form-data">
+      {{user_form.as_p}}
+      
+      {{store_form.as_p}}
+      {% csrf_token %}
+      <p><input type="submit" value="Create an account"></p>
+    </form>
+  </div>
+  </body>
+  </html>

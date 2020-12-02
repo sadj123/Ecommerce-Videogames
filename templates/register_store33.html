@@ -1,0 +1,51 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!Doctype html>
+<html class="no-js" lang="en">
+<head>
+  <link rel="stylesheet" href="{% static 'register_store.css' %}">
+  <title>register</title>
+</head>
+<body>
+  <div class="form-box">
+    <h1>Create</h1>
+    <form method= 'post' action ="" enctype="multipart/form-data">
+      <div id="div_id_username" class="control-group">
+        <input type="text" name="username" maxlength="150" placeholder="Username "autofocus="" class="textinput textInput" required="" id="id_username">
+      </div>
+      <div id="div_id_email" class="control-group">
+        <input type="email" name="email" class="emailinput" placeholder="email" required="" id="id_email">
+      </div>
+      <div id="id_first_name" class="control-group">
+        <input type="text" name="first_name" placeholder="Store name" maxlength="30" class="textinput textInput" required="" id="id_first_name">
+      </div>
+      <div id="id_password1" class="control-group">
+        <input type="password" name="password1" autocomplete="new-password" placeholder="Password" class="textinput textInput" required="" id="id_password1">
+      </div>
+      <div id="id_password2" class="control-group">
+        <input type="password" name="password2" autocomplete="new-password" placeholder="Confirm_password" class="textinput textInput" required="" id="id_password2">
+      </div>
+      {% csrf_token %}
+      <div id="div_id_street_number" class="control-group">
+        <input type="text" name="street_number" placeholder="Street number" maxlength="50" class="textinput textInput" required="" id="id_street_number">
+      </div>
+      <div id="div_id_street_name" class="control-group">
+        <input type="text" name="street_name" placeholder="Street name" maxlength="50" class="textinput textInput" required="" id="id_street_name">
+      </div>
+      <div id="div_id_phone" class="control-group">
+        <input type="text" name="phone" maxlength="20" placeholder="Phone" class="textinput textInput" required="" id="id_phone">
+      </div>
+      <div id="div_id_city" class="control-group">
+        <select name="city" class="select" required="" id="id_city"> <option value="" selected="">---city---</option> <option value="1">Pasadena (USA)</option> <option value="2">Portland (USA)</option> <option value="3">Seattle (USA)</option> <option value="4">Miami (USA)</option> <option value="5">Pheonix (USA)</option> <option value="6">Santa Cruz (USA)</option> <option value="7">New York (USA)</option> <option value="8">Andalusia (USA)</option> <option value="9">North Hollywood (USA)</option></select>
+      </div>
+      <div id="div_id_photo" class="control-group">
+        <input type="file" name="photo" accept="image/*" placeholder="Photo" class="clearablefileinput" id="id_photo">
+        <div class="form-box-select">
+          <label for="id_photo">Choose profile pic</label>
+        </div>
+      </div>
+      <input type="submit" value="Create">
+    </form>
+  </div>
+  </body>
+  </html>

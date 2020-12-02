@@ -1,0 +1,29 @@
+{% load static %}
+<!Doctype html>
+<html class="no-js" lang="en">
+<head>
+  <title>edit_dispatcher</title>
+</head>
+{% if messages %}
+<ul class= "messages">
+    {%for message in messages%}
+    <li class="{{message.tags}}">
+        {{message|safe}}
+        <a href="#" class="close">X</a>
+    </li>
+    {%endfor%}
+</ul>
+{%endif%}
+<body>
+  <div>
+    <h1>EDIT</h1>
+    <form method= 'post'enctype= "multipart/form-data">
+      {{user_form.as_p}}
+      
+      {{dispatcher_form.as_p}}
+      {% csrf_token %}
+      <p><input type="submit" value="Save changes"></p>
+    </form>
+  </div>
+  </body>
+  </html>
