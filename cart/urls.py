@@ -21,4 +21,5 @@ urlpatterns = [
     path('clear_package/', clear_cart_package , name='clear_cart_package'),
 
     path('decrease_product/<str:product_name>/', decrease_cart, name= 'decrease_product'),
+    path('increase_product/<str:product_name>/', increase_cart, name= 'increase_cart'),
 ]

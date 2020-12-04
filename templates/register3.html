@@ -1,17 +1,40 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!Doctype html>
 <html class="no-js" lang="en">
 <head>
-  <title>register_admin</title>
+  <link rel="stylesheet" href="{% static 'register_store.css' %}">
+  <title>Sign up
+  </title>
 </head>
 <body>
-  <div>
+  <div class="form-box">
     <h1>Create Admin</h1>
-    <form method= 'post'>
-      {{user_form.as_p}}
+    {%if user_form.errors %}
+      <p>Error. Please try again</p>
+    {% endif %}
+    <form method= 'post' action ="" enctype="multipart/form-data">
+      <div id="div_id_username" class="control-group">
+        <input type="text" name="username" maxlength="150" placeholder="Username "autofocus="" class="textinput textInput" required="" id="id_username">
+      </div>
+      <div id="div_id_email" class="control-group">
+        <input type="email" name="email" class="emailinput" maxlength="254" placeholder="email" required="" id="id_email">
+      </div>
+      <div id="id_first_name" class="control-group">
+        <input type="text" name="first_name" placeholder="first_name" maxlength="150" class="textinput textInput" required="" id="id_first_name">
+      </div>
+      <div id="id_first_name" class="control-group">
+        <input type="text" name="last_name" placeholder="last_name" maxlength="150" class="textinput textInput" required="" id="id_first_name">
+      </div>
+      <div id="id_password1" class="control-group">
+        <input type="password" name="password1" autocomplete="new-password" placeholder="Password" class="textinput textInput" required="" id="id_password1">
+      </div>
+      <div id="id_password2" class="control-group">
+        <input type="password" name="password2" autocomplete="new-password" placeholder="Confirm_password" class="textinput textInput" required="" id="id_password2">
+      </div>
       {% csrf_token %}
-      <p><input type="submit" value="Crete an account"></p>
+      <input type="submit" value="Create">
     </form>
   </div>
   </body>
-  </html>
+</html>

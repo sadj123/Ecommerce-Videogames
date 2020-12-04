@@ -3,9 +3,12 @@
 <html lang="en" dir="ltr">
   <head>
     {% load auth_extras %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
     <link rel="stylesheet" href="{% static 'main_menu/css/fontello.css' %}">
-    <link rel="stylesheet" href="{% static 'style2.css' %}">
-    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'style3.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Videogames {{VG.videogame_name}}</title>
   </head>
   <header>
@@ -33,45 +36,54 @@
       </nav>
     </div>
   </header>
-    <div>
-    
-  <h1>{{ VG.videogame_name}}</h1>
-  <p>
-      Rating: {{VG.rating}}
-      <br>
-      Release date: {{VG.release_date}}
-      <br>
-      Engine: {{VG.engine}}
-      <br>
-      Production cost: {{VG.production_cost}}
-      <br>
-      Administrator: {{VG.administrator}}
-      <br>
-      Category: {{VG.category}}
-      <br>
-      Price: {{VG.unit_price}}
-      <br>
-      Genre:
-      {%for genres in VG.genre.all%} {{genres}}<br>{% endfor %}
-      <br>
-      {%for format in VG.formats.all%} {{format}}<br>{% endfor %}
-      <br>
-      {%for platforms in VG.platform.all%} {{platforms}}<br>{% endfor %}
-      <br>
-      {%for languages in VG.language.all%} {{languages}}<br>{% endfor %}
-      <br>
-  </p>
-</div>
-<div class="IDK">
-  {% if VG.administrator == user %}
-  <div class="IDLLLL">
-    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'videogame_update' VG.videogame_name %}"> Update Post</a>
-    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'videogame_delete' VG.videogame_name %}"> Delete Post</a>
-  </div>
-  {%endif%}
-</div>
-<div>
-
-  <a href="{%url 'videogames' %}">PARA ATRAS</a>
-</div>
+  <body>
+    <div class="content">
+      {% block content %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ VG.administrator }}</a>
+            </div>
+            <h2><a class="article-title" href="#">{{ VG.videogame_name }}</a></h2>
+            <p>
+                Rating: {{VG.rating}}
+                <br>
+                Release date: {{VG.release_date}}
+                <br>
+                Engine: {{VG.engine}}
+                <br>
+                Production cost: {{VG.production_cost}}
+                <br>
+                Administrator: {{VG.administrator}}
+                <br>
+                Category: {{VG.category}}
+                <br>
+                Price: {{VG.unit_price}}
+                <br>
+                Genre:
+                {%for genres in VG.genre.all%} {{genres}}<br>{% endfor %}
+                <br>
+                {%for format in VG.formats.all%} {{format}}<br>{% endfor %}
+                <br>
+                {%for platforms in VG.platform.all%} {{platforms}}<br>{% endfor %}
+                <br>
+                {%for languages in VG.language.all%} {{languages}}<br>{% endfor %}
+                <br>
+            </p>
+            <div class="IDK">
+              {% if VG.administrator == user %}
+                <div class="IDLLLL">
+                  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'videogame_update' VG.videogame_name %}"> Update Post</a>
+                  <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'videogame_delete' VG.videogame_name %}"> Delete Post</a>
+                </div>
+              {%endif%}
+            </div>
+            <div>
+              <a class="btn btn-success btn-sm mt-1 mb-1" href="{%url 'videogames' %}">Back</a>
+            </div>
+          </div>
+        </article>
+      {% endblock %}
+    </div>
+  </body>
 </html>

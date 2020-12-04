@@ -19,8 +19,8 @@
           <td>{{ key }}</td>
           <td>{{ value.quantity }}</td>
           <td>
-            <a href="{% url 'cart:decrease_package' key %}" class="ml-2 btn-sm btn btn-danger"> - </a>
-            <a href="{% url 'cart:add_package' key %}" class="btn btn-sm btn-success"> + </a>
+            <a href="{% url 'cart:decrease_product' key %}" class="ml-2 btn-sm btn btn-danger"> - </a>
+            <a href="{% url 'cart:increase_cart' key %}" class="btn btn-sm btn-success"> + </a>
                 Total {{ value.price|multiply:value.quantity|money_format:"$" }}    .
           </td>
         </tr>

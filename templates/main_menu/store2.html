@@ -16,11 +16,11 @@
         <input type="checkbox" id="menu-bar">
         <label for="menu-bar" class="icon-menu"></label>
         <nav class="menu">
-          <a href="{% url '' %}">Main menu</a>
           <a href="#">About us</a>
           {% if user.is_authenticated %}
             <a href="{% url 'logout' %}">Logout</a>
             {% if request.user|has_group:"Store" %}
+              <a class="icon-basket" href="store/"> Store</a>
               <a href="{% url 'edit_store' %}" >{{user.username}}</a>
               <a href="{% url 'edit_store' %}" ><img src="{{ user.store.photo.url }}"></a>
             {% elif request.user|has_group:"Dispatcher"%}
@@ -35,26 +35,29 @@
         </nav>
       </div>
     </header>
-      <body>
-      <div class="content">
-        <h2>Game Designer Enterprise</h2>
-        <p>Your perfect store</p>
-        <div class="labels">
-          <a href="package/">Packages</a>
-          <a href="videogame/">Videogames</a>
-          <a href="dlc/">Dlc's</a>
-        </div>
-      </div>
-      <div class="slider">
-        <ul>
-          <li><img src="{% static 'img/1.jpg' %}" alt="img/1.jpg"></li>
-          <li><img src="{% static 'img/2.jpg' %}" alt="img/2.jpg"></li>
-          <li><img src="{% static 'img/3.jpg' %}" alt="img/3.jpg"></li>
-          <li><img src="{% static 'img/4.jpg' %}" alt="img/4.jpg"></li>
-        </ul>
-      </div>
+      <main>
+      <section id="banner">
 
-    </body>
+        <div class="contenedor">
+          <h2>Game Designer Enterprise</h2>
+          <p>Your perfect store</p>
+          <div class="labels">
+            <a href="package/">Packages</a>
+            <a href="videogame/">Videogames</a>
+            <a href="dlc/">Dlc's</a>
+          </div>
+          <div class="slider">
+            <ul>
+              <li><img src="img/1.jpg" alt="imagen1"></li>
+              <li><img src="img/2.jpg" alt="imagen2"></li>
+              <li><img src="img/3.jpg" alt="imagen3"></li>
+              <li><img src="img/4.jpg" alt="imagen4"></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </main>
     <footer>
       <div class="contenedor">
         <p class="designer"> Designed By Santiago Diaz & Santiago Alvarez & Nicolas Velandia</p>

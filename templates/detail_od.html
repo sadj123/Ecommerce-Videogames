@@ -3,9 +3,12 @@
 <html lang="en" dir="ltr">
   <head>
     {% load auth_extras %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
     <link rel="stylesheet" href="{% static 'main_menu/css/fontello.css' %}">
-    <link rel="stylesheet" href="{% static 'style2.css' %}">
-    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'style3.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>order {{OD}}</title>
   </head>
   <header>
@@ -33,27 +36,35 @@
       </nav>
     </div>
   </header>
-  <h1>{{ OD}}</h1>
-  <p>
-      STORE: {{OD.user.first_name}}
-      <br>
-        DELIVER TO: {{OD.user.store.street_name}}, {{OD.user.store.street_number}} 
-      <br>
-      CITY: {{OD.user.store.city}}
-      <br>
-      STORE PHONE: {{OD.user.store.phone}}
-      <br>
-    </p>
-</div>
-<div class="IDK">
-  {% if OD.dispatcher.user == user %}
-  <div class="IDLLLL">
-    <a class="btn btn-success btn-sm mt-1 mb-1" href="{% url 'confirm_order' OD.id %}"> Delivered</a>
-  </div>
-  {%endif%}
-</div>
-<div>
-
-  <a href="{%url 'list_orders' %}">PARA ATRAS</a>
-</div>
+  <body>
+    <div class="content">
+      {% block content %}
+        <article class="media content-section">
+          <div class="media-body">
+            <h2><a class="article-title" href="#">Order : {{ OD }}</a></h2>
+            <p>
+                STORE: {{OD.user.first_name}}
+                <br>
+                  DELIVER TO: {{OD.user.store.street_name}}, {{OD.user.store.street_number}}
+                <br>
+                  CITY: {{OD.user.store.city}}
+                <br>
+                  STORE PHONE: {{OD.user.store.phone}}
+                <br>
+              </p>
+            <div class="IDK">
+              {% if OD.dispatcher.user == user %}
+                <div class="IDLLLL">
+                  <a class="btn btn-outline-success btn-sm mt-1 mb-1" href="{% url 'confirm_order' OD.id %}"> Delivered</a>
+                </div>
+              {%endif%}
+            </div>
+            <div class="IDLLLL">
+              <a class="btn btn-success btn-sm mt-1 mb-1" href="{%url 'list_orders' %}">Back</a>
+            </div>
+          </div>
+        </article>
+      {% endblock %}
+    </div>
+  </body>
 </html>

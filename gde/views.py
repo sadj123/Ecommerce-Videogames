@@ -19,6 +19,7 @@ from django.utils.html import strip_tags
 
 
 @login_required
+@allowed_users(allowed_roles=['Store'])
 def store(request):
 	return render(request,'main_menu/store.html')
 
@@ -296,7 +297,7 @@ def edit_dispatcher(request):
         else:
             messages.error(request, 'Error updating your profile')
     else:
-        user_form= StoreEditForm(instance= request.user)
+        user_form= DispatcherEditForm(instance= request.user)
         dispatcher_form= DispatcherEditForm2(instance= request.user.dispatcher)
     return render(request, 'edit_dispatcher.html', {'user_form': user_form, 'dispatcher_form': dispatcher_form})
 
@@ -314,22 +315,22 @@ def edit_admin(request):
         user_form= AdminEditForm(instance= request.user)
     return render(request, 'edit_admin.html', {'user_form': user_form})
 
-#@allowed_users(allowed_roles= ['Store'])
 @login_required
+@allowed_users(allowed_roles= ['Store'])
 def list_videogame(request):
 	cart = Cart(request)
 	videogames = Videogame.objects.all()
 	return render(request, "list_videogame.html", {"videogames":videogames})
 
-#@allowed_users(allowed_roles= ['Store'])
 @login_required
+@allowed_users(allowed_roles= ['Store'])
 def list_dlc_dic(request):
 	cart = Cart(request)
 	dlcs = Dlc.objects.all()
 	return render(request, "list_dlc_dic.html", {"dlcs":dlcs})
 
-#@allowed_users(allowed_roles= ['Store'])
 @login_required
+@allowed_users(allowed_roles= ['Store'])
 def list_package(request):
 	cart = Cart(request)
 	packages = Package.objects.all()

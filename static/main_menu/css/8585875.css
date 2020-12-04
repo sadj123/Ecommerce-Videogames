@@ -11,7 +11,6 @@
   box-sizing: border-box;
 }
 
-
 .menu img{
   width: 100%;
   height: 100%;
@@ -28,21 +27,18 @@ body{
 }
 
 .slider{
-  border: 4px solid white;
-  width: 58%;
+  width: 90%;
   margin: auto;
-  margin-bottom: 20px;
   overflow: hidden;
-  animation: color 13s infinite;
-  animation-direction: alternate;
 }
 
 .slider ul {
+  float: right;
   display: flex;
   padding: 0;
   width: 400%;
 
-  animation: cambio 13s infinite;
+  animation: cambio 20s infinite;
   animation-direction: alternate;
 }
 
@@ -69,60 +65,7 @@ body{
   100% {margin-left: -300%;}
 }
 
-@keyframes color {
-  0% {border: 4px solid lightgreen;}
-  20% {border: 4px solid lightgreen;}
 
-  25% {border: 4px solid purple;}
-  45% {border: 4px solid purple;}
-
-  50% {border: 4px solid lightblue;}
-  75% {border: 4px solid lightblue;}
-
-  80% {border: 4px solid white;}
-  100% {border: 4px solid white;}
-
-}
-
-.content{
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  margin-top: 65px;
-  margin-bottom: 20px;
-  display: block;
-  text-align: center;
-  color: #fff;
-}
-
-.content h2{
-  font-size: 30px;
-}
-
-.labels{
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 7px 5px;
-}
-
-.labels a{
-  width: 150px;
-  color: white;
-  text-decoration: none;
-  text-align: center;
-  padding: 6px;
-  margin-top: 9px;
-  animation: color 13s infinite;
-  animation-direction: alternate;
-}
-
-.labels a:hover{
-  background: rgba(51,51,51,0.5);
-}
 
 header{
   width: 100%;
@@ -153,6 +96,17 @@ header .contenedor{
   font-size: 30px;
   text-decoration: none;
   font-family: 'Lobster', cursive;
+}
+
+
+section{
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+#bienvenidoss {
+  text-align: center;
+  color: white;
 }
 
 footer .contenedor{

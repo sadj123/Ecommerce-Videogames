@@ -2,15 +2,35 @@
 <!Doctype html>
 <html class="no-js" lang="en">
 <head>
+  <link rel="stylesheet" href="{% static 'register_store.css' %}">
   <title>register_disp</title>
 </head>
 <body>
-  <div>
+  <div class="form-box">
     <h1>Create Dispatcher</h1>
+    {%if user_form.errors or dispatcher_form.errors %}
+      <p>Error. Please try again</p>
+    {% endif %}
     <form method= 'post' action ="" enctype="multipart/form-data">
-      {{user_form.as_p}}
+      <input type="text" name="username" maxlength="150" autofocus="" placeholder="username" required="" id="id_username">
+      <input type="email" name="email" required="" id="id_email" placeholder="email">
+      <input type="text" name="first_name" maxlength="30" required="" id="id_first_name" placeholder="first_name">
+      <input type="text" name="last_name" maxlength="30" required="" id="id_last_name" placeholder="last_name">
+      <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" placeholder="password">
+      <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" placeholder="Confirm_password">
+      <input type="text" name="telephone" maxlength="20" required="" id="id_telephone" placeholder="Phone">
+      <input type="text" name="plate" maxlength="10" required="" id="id_plate" placeholder="plate">
+      <input type="number" name="weight" step="0.01" required="" id="id_weight" placeholder="weight">
+      <input type="number" name="height" step="0.01" required="" id="id_height" placeholder="height">
+      <div class="select">
+        <select name="blood_type" required="" id="id_blood_type"><option value="" selected="">---Blood type---</option><option value="A">A</option><option value="B">B</option><option value="AB">AB</option><option value="O">O</option></select>
+        <select name="rh_type" required="" id="id_rh_type"><option value="" selected="">---Rh type---</option><option value="+">+</option><option value="-">-</option></select>
+      </div>
+      <div class="form-box-select">
+        <input type="file" name="photo" accept="image/*" placeholder="Photo" class="clearablefileinput" id="id_photo">
+        <label for="id_photo">Choose profile pic</label>
+      </div>
       {% csrf_token %}
-      {{dispatcher_form.as_p}}
       <p><input type="submit" value="Crete an account"></p>
     </form>
   </div>
