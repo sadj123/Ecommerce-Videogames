@@ -9,7 +9,7 @@ class PackagesManager(models.Manager):
 		return super(PackagesManager, self).get_queryset()
 class RandomManager(models.Manager): 
     def get_query_set(self): 
-     return super(RandomManager, self).get_query_set().order_by('?') 
+     return super(RandomManager, self).get_queryset()
 
 
 class GamesManager(models.Manager):

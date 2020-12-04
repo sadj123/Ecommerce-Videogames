@@ -15,7 +15,7 @@ import random
 
 @login_required
 def process_order(request):
-    order = Order.objects.create(user = request.user, dispatcher= Dispatcher.randoms.all()[random.randint(0, len(Dispatcher.randoms.all()))])
+    order = Order.objects.create(user = request.user, dispatcher= Dispatcher.randoms.all()[random.randint(0, len(Dispatcher.randoms.all())-1)])
     cart = Cart(request)
     order_lines = list()
     for key, value in cart.cart.items():
